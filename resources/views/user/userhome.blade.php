@@ -29,9 +29,9 @@
                         <td class="align-middle">{{ $rs->category }}</td>
                         <td class="align-middle">{{ $rs->description }}</td>  
                         <td class="align-middle">
-                            <button >
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
                                 <a href="{{ route('addtocart', $rs->id) }}" type="button" class="btn btn-danger">Add</a>
-                            </button>
                         </td>
                     </tr>
                 @endforeach

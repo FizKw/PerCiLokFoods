@@ -27,11 +27,10 @@ class HomeController extends Controller
                 return redirect()->back();
             }
         }
-
-    }
-    
-    public function adminedit(){
-        return view('admin.adminedit');
+        else {
+            $product = Foods::orderBy('created_at', 'DESC')->get();
+            return view('user.userhome',compact('product'));
+        }
     }
 
     

@@ -17,22 +17,44 @@
                 <th>Price</th>
                 <th>Category</th>
                 <th>Description</th>
+                <th>Count</th>
+                <th></th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>+
-            @if($cart->count() > 0)
-                @foreach($cart->foods as $rs)
+            @if($listFood->count() > 0)
+                @foreach($listFood as $rs)
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $rs->food }}</td>
                         <td class="align-middle">{{ $rs->price }}</td>
                         <td class="align-middle">{{ $rs->category }}</td>
                         <td class="align-middle">{{ $rs->description }}</td>  
+                        @foreach ($counts as $count)
+                            @if ($count->foods_id == $rs->id)
+                            <td class="align-middle">
+                                {{ $count->count }}
+                            </td>
+                            @endif
+                        @endforeach
                         <td class="align-middle">
-                            
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{{ route('increase', $rs->id) }}" type="button" class="btn btn-secondary">+</a>
+                                <a href="{{ route('decrease', $rs->id) }}" type="button" class="btn btn-danger">-</a>
                         </td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ $totalPrice }}</td>
+                </tr>
             @else
                 <tr>
                     <td class="text-center" colspan="5">Product not found</td>

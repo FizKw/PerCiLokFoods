@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('foods_id')->constrained();
+            $table->integer('count')->default(1);
             $table->timestamps();
         });
     }

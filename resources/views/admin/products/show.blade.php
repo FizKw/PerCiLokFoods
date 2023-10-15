@@ -28,6 +28,7 @@
             <textarea class="form-control" name="description" placeholder="Descriptoin" readonly>{{ $product->description }}</textarea>
         </div>
     </div>
+    @if (Auth()->user()->usertype === 'admin')
     <div class="row">
         <div class="col mb-3">
             <label class="form-label">Created At</label>
@@ -38,4 +39,5 @@
             <input type="text" name="updated_at" class="form-control" placeholder="Updated At" value="{{ $product->updated_at }}" readonly>
         </div>
     </div>
+    @endif
 </x-app-layout>

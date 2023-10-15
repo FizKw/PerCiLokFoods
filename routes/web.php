@@ -19,32 +19,33 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+    
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index']);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('home',[HomeController::class,'index'])->middleware('auth')->name('home');
 
-Route::get('home',[HomeController::class,'index'])->middleware('auth')->name('home');
-
-Route::get('home/adminedit',[HomeController::class, 'adminedit'])->middleware(['auth','admin'])->name('adminedit');
+// Route::get('home/adminedit',[HomeController::class, 'adminedit'])->middleware(['auth','admin'])->name('adminedit');
 
 Route::middleware('auth')->group(function () {
+    Route::get('home',[HomeController::class,'index'])->name('home');
     Route::get('home/cartlist',[CartController::class,'show'])->name('cartlist');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::patch('/profile/avatar',[ImageUploadController::class, 'avatarUpdate'])->name('profile.avatar');
     Route::get('home/addtocart/{id}',[CartController::class,'add'])->name('addtocart');
-    
+    Route::get('home/increase/{id}',[CartController::class,'increase'])->name('increase');
+    Route::get('home/decrease/{id}',[CartController::class,'decrease'])->name('decrease');
+    Route::get('show/{id}', [ProductController::class,'show'])->name('products.show');
     
 });
 Route::middleware(['auth', 'admin'])->prefix('home')->group(function () {
+        // Route::get('home/adminedit',[HomeController::class, 'adminedit'])->name('adminedit');
         Route::get('create', [ProductController::class,'create'])->name('products.create');
         Route::post('store', [ProductController::class,'store'])->name('products.store');
-        Route::get('show/{id}', [ProductController::class,'show'])->name('products.show');
         Route::get('edit/{id}', [ProductController::class,'edit'])->name('products.edit');
         Route::patch('edit/{id}', [ProductController::class,'update'])->name('products.update');
         Route::delete('destroy/{id}', [ProductController::class,'destroy'])->name('products.destroy');

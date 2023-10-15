@@ -16,4 +16,9 @@ class Foods extends Model
         'category',
         'description',
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'user_foods')->withTimestamps();
+    }
+    
 }

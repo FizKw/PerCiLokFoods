@@ -9,20 +9,23 @@
                     <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="">   
                 </div>
                 @endif
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('cartlist')" :active="request()->routeIs('home')">
-                        {{ __('CartList') }}
-                    </x-nav-link>
-                </div>
+                @auth
+                @if (Auth()->user()->usertype === 'user')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('cartlist')" :active="request()->routeIs('cartlist')">
+                            {{ __('CartList') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                @endauth
             </div>
-
+            @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -56,7 +59,25 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @else
+            <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+                @if (Route::has('login'))
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                        @auth
+                            <a href="{{ route('home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+                
+                
+            </div>
+            @endauth
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
@@ -68,7 +89,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
@@ -76,7 +97,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
@@ -101,5 +122,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
