@@ -40,6 +40,7 @@
                         @endforeach
                         <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
                                 <a href="{{ route('increase', $rs->id) }}" type="button" class="btn btn-secondary">+</a>
                                 <a href="{{ route('decrease', $rs->id) }}" type="button" class="btn btn-danger">-</a>
                         </td>
