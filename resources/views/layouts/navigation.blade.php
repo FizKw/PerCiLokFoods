@@ -61,8 +61,6 @@
                         @endauth
                     </div>
                 @endif
-                
-                
             </div>
             @endauth
             

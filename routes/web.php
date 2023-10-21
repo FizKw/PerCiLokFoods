@@ -19,10 +19,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-// Route::get('/', function () {
-    
-//     return view('welcome');
-// });
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('show/{id}', [ProductController::class,'show'])->name('products.show');
 
