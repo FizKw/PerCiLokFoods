@@ -23,7 +23,9 @@ use App\Http\Controllers\ProductController;
     
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('show/{id}', [ProductController::class,'show'])->name('products.show');
+
 
 // Route::get('home',[HomeController::class,'index'])->middleware('auth')->name('home');
 
@@ -39,11 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::get('home/addtocart/{id}',[CartController::class,'add'])->name('addtocart');
     Route::get('home/increase/{id}',[CartController::class,'increase'])->name('increase');
     Route::get('home/decrease/{id}',[CartController::class,'decrease'])->name('decrease');
-    Route::get('show/{id}', [ProductController::class,'show'])->name('products.show');
+    
     
 });
 Route::middleware(['auth', 'admin'])->prefix('home')->group(function () {
-        // Route::get('home/adminedit',[HomeController::class, 'adminedit'])->name('adminedit');
+        
         Route::get('create', [ProductController::class,'create'])->name('products.create');
         Route::post('store', [ProductController::class,'store'])->name('products.store');
         Route::get('edit/{id}', [ProductController::class,'edit'])->name('products.edit');

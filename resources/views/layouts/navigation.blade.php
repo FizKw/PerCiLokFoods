@@ -9,13 +9,15 @@
                     <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="">   
                 </div>
                 @endif
+                
+                @auth
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                @auth
+                
                 @if (Auth()->user()->usertype === 'user')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('cartlist')" :active="request()->routeIs('cartlist')">
@@ -23,6 +25,12 @@
                         </x-nav-link>
                     </div>
                 @endif
+                @else
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('home')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
                 @endauth
             </div>
             @auth

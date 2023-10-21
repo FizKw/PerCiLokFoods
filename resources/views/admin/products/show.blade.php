@@ -28,6 +28,7 @@
             <textarea class="form-control" name="description" placeholder="Descriptoin" readonly>{{ $product->description }}</textarea>
         </div>
     </div>
+    @auth
     @if (Auth()->user()->usertype === 'admin')
     <div class="row">
         <div class="col mb-3">
@@ -40,4 +41,5 @@
         </div>
     </div>
     @endif
+    @endauth
 </x-app-layout>

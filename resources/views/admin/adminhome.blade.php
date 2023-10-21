@@ -15,6 +15,11 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in as Admin") }}
                 </div>
+                @if (session('$success'))
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __(success) }}
+                </div>
+                @endif
                 <!-- Table admin CRUD  -->
                 @include('admin.adminedit')
                 
