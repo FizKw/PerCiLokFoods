@@ -27,10 +27,12 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded bg-color3 border-gray-300  text-color2 shadow-sm focus:text-color2 " name="remember">
+                <span class="ml-2 text-sm text-black">{{ __('Remember me') }}</span>
             </label>
         </div>
+
+
         
         
         <div class="flex items-center justify-end mt-4">
@@ -42,7 +44,10 @@
                 </a>
             @endif
             -->
-
+            {{-- Register --}}
+            <a class="underline text-sm text-black hover:text-white  rounded-md " href="{{ route('register') }}">
+                {{ __('Create an account') }}
+            </a>
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
