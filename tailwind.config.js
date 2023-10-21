@@ -10,7 +10,14 @@ export default {
     ],
 
     theme: {
+       
         extend: {
+            colors: {
+                'color1': '#d63447',
+                'color2': '#f57b51',
+                'color3': '#f6eedf',
+                'color4': '#d1cebd',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
