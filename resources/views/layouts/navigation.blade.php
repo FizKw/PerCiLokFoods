@@ -1,37 +1,16 @@
+
+
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                @if (isset(Auth()->user()->avatar))
-                <div class="shrink-0 flex items-center">
-                    <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="">   
-                </div>
-                @endif
-                
-                @auth
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                
-                @if (Auth()->user()->usertype === 'user')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('cartlist')" :active="request()->routeIs('cartlist')">
-                            {{ __('CartList') }}
-                        </x-nav-link>
-                    </div>
-                @endif
-                @else
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('home')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                @endauth
             </div>
             @auth
             <!-- Settings Dropdown -->
@@ -86,15 +65,7 @@
                 
             </div>
             @endauth
-            <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
+            
         </div>
     </div>
     
@@ -133,3 +104,69 @@
         @endauth
     </div>
 </nav>
+
+<div class="navbar bg-base-100 ">
+    <div class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a class="btn btn-ghost normal-case text-xl">STyling anjing</a>
+    </div>
+    <div class="flex-none">        
+        @auth
+            @if (Auth()->user()->usertype === 'user')
+            <label tabindex="0" class="btn btn-ghost btn-circle" :href="route('cartlist')" :active="request()->routeIs('cartlist')">
+                <div class="indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <span class="badge badge-sm indicator-item">8</span>
+                </div>
+            </label>
+            @endif
+        @endauth
+        
+        <div class="dropdown dropdown-end max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- Avatar Logo -->
+            <label class="btn btn-ghost btn-circle avatar">
+            @if (isset(Auth()->user()->avatar))
+                <img class="w-10 rounded-full" src="{{ asset('storage/' . Auth::user()->avatar) }}" />    
+            @else
+                <i data-feather="user"></i>
+            @endif
+            </label>
+
+            @auth
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a class="justify-between font-bold">
+                    {{ Auth::user()->name }}
+                    </a>
+                </li>
+                <li><a :href="route('profile.edit')">{{ __('Profile') }}</a></li>
+                <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                            <a :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </a>
+                </form>
+                </li>
+            </ul>
+            @else
+            <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+                @if (Route::has('login'))
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                        @auth
+                            <a href="{{ route('home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+            @endauth
+        </div>
+    </div>
+</div>
