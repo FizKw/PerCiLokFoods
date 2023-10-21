@@ -51,10 +51,10 @@
             {{-- Dropdown Avatar --}}
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-color4 text-black rounded-box w-52">
                 <li><a href="{{route('profile.edit')}}" class="hover:text-color1 active:bg-color3 focus:bg-color3 ">Profile Settings</a></li>
-                <li><form method="POST" action="{{ route('logout') }}" class="hover:text-color1">
+                <li><form method="POST" action="{{ route('logout') }}" class="inline-flex hover:text-color1">
                     @csrf
 
-                    <a href="{{route('logout')}}"
+                    <a class="w-full" href="{{route('logout')}}"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();" >
                         {{ __('Log Out') }}
