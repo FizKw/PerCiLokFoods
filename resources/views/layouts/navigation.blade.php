@@ -82,8 +82,6 @@
                         @endauth
                     </div>
                 @endif
-                
-                
             </div>
             @endauth
             <!-- Hamburger -->
