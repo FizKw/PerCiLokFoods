@@ -61,6 +61,8 @@
                         @endauth
                     </div>
                 @endif
+                
+                
             </div>
             @endauth
             
@@ -121,13 +123,15 @@
         
         <div class="dropdown dropdown-end max-w-7xl px-4 sm:px-6 lg:px-8">
             <!-- Avatar Logo -->
-            <label class="btn btn-ghost btn-circle avatar">
+            
             @if (isset(Auth()->user()->avatar))
+            <label class="btn btn-ghost btn-circle avatar">
                 <img class="w-10 rounded-full" src="{{ asset('storage/' . Auth::user()->avatar) }}" />    
             @else
                 <i data-feather="user"></i>
-            @endif
-            </label>
+                </label>
+                @endif
+            
 
             @auth
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
