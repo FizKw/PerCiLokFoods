@@ -9,31 +9,25 @@
         </div>
       </div>  
         @if($product->count() > 0)
-        <div class="btn-group">
-          <button class="btn {{ $btnActive === 'Makanan' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Makanan') }}">Makanan</a></button>
-          <button class="btn {{ $btnActive === 'Minuman' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Minuman') }}">Minuman</a></button>
-          <button class="btn {{ $btnActive === 'Snack' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Snack') }}">Snack</a></button>
+        <div class="flex items-center justify-center space-x-3 mt-6">
+          <button><a href="{{ route('category', 'Makanan') }}" class="btn rounded-full capitalize text-lg {{ $btnActive === 'Makanan' ? 'bg-color1 hover:bg-red-400 text-white' : '' }}">Makanan</a></button>
+          <button><a href="{{ route('category', 'Minuman') }}" class="btn rounded-full capitalize text-lg {{ $btnActive === 'Minuman' ? 'bg-color1 hover:bg-red-400 text-white' : '' }}">Minuman</a></button>
+          <button><a href="{{ route('category', 'Snack') }}" class="btn rounded-full capitalize text-lg {{ $btnActive === 'Snack' ? 'bg-color1 hover:bg-red-400 text-white' : '' }}">Snack</a></button>
         </div>
         
         <x-foodlist>
-        @foreach($product as $rs)
-                <div id="foodcart" class="card w-96 bg-color4 border border-color2 transition transform duration-700 hover:shadow-xl hover:scale-105 rounded-lg relative">
-                    <figure class="px-10 pt-12  mx-auto">
-                      <img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}"  class="object-fill w-96 h-56 rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title text-2xl">
-                            {{ $rs->food }}
-                            <div class="badge badge-sm bg-color3">{{ $rs->category }}</div>
-                        </h2>
-                      <p>{{ $rs->description }}</p>
-                      <h2 class="text-gray-900 text-xl font-bold">Rp{{ $rs->price }}</h2>
-                      <div class="card-action flex px-auto">
-                        <button><a href="{{ route('products.show', $rs->id) }}" type="button" class=" flex btn rounded-full bg-color2 hover:text-black">See details</a></button>
-                        <button><a href="{{ route('addtocart', $rs->id) }}" type="button" class="btn rounded-full bg-color1 hover:bg-red-400 text-white">Add to cart</a></button>
-                      </div>
-                    </div>
+            @foreach($product as $rs)
+            <div id="foodcart" class="card card-compact w-96  mb-6 bg-color4 border border-color2 transition transform duration-700 shadow-md hover:shadow-xl hover:scale-105 rounded-lg relative">
+                <a href="{{ route('products.show', $rs->id) }}">
+                <figure class="mx-auto"><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}" class="w-96 h-56 rounded-xl object-cover object-center" /></figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title text-2xl capitalize">{{ $rs->food }}
+                        <span class="badge badge-sm bg-color3">{{ $rs->category }}</span>
+                    </h2>
+                    <p class="text-gray-900 text-xl font-bold">Rp{{ $rs->price }}</p>
                 </div>
+                </a>
+            </div>
             @endforeach
         </x-foodlist>
         @else 
