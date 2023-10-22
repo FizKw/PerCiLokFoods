@@ -6,7 +6,7 @@
             Avatar
         </h2>
         @if($user->avatar)
-        <img width="150" height="150" class="rounded-full" src="{{ "/storage/$user->avatar" }}" alt="">
+        <img width="150" height="150" class="rounded-full w-48 h-48 object-fill" src="{{ "/storage/$user->avatar" }}" alt="">
         @endif
         <p class="pt-4 text-sm text-black">
             Add or Update Avatar
