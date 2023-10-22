@@ -9,6 +9,7 @@
         </div>
       </div>  
         @if($product->count() > 0)
+        
         <x-foodlist>
         @foreach($product as $rs)
                 <div id="foodcart" class="card w-96 bg-color4 border border-color2 transition transform duration-700 hover:shadow-xl hover:scale-105 rounded-lg relative">
