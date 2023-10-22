@@ -1,15 +1,17 @@
 <div class="p-6 text-gray-900">
+    @if(Session::has('success'))
+        <div class="alert alert-success my-4" role="alert">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+
     <div class="flex justify-between items-center">
         <div> </div>
         <h1 class="items-center uppercase text-xl ml-6 font-bold">List Product</h1>
         <a href="{{ route('products.create') }}" class="mr-20 btn rounded-full bg-color1 hover:bg-red-400 text-white">Add list</a>
 
     </div>
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
+
     <div class="overflow-x-auto h-96">
         <table class="table table-hover">
                 <thead class="text-center font-bold text-lg text-black">
