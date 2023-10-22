@@ -6,7 +6,7 @@
             Avatar
         </h2>
         @if($user->avatar)
-        <img width="150" height="150" class="rounded-full" src="{{ "/storage/$user->avatar" }}" alt="">
+        <img  class="rounded-full w-48 h-48 object-cover object-center" src="{{ "/storage/$user->avatar" }}" alt="">
         @endif
         <p class="pt-4 text-sm text-black">
             Add or Update Avatar
@@ -19,7 +19,7 @@
         @method('patch')
 
         <div>
-            <x-text-input id="avatar" name="avatar" type="file" class="block w-full" required autofocus autocomplete="avatar" />
+            <x-text-input id="avatar" name="avatar" type="file" class="block w-full" required  autocomplete="avatar" />
             <x-input-error class="" :messages="$errors->get('avatar')" />
         </div>
 

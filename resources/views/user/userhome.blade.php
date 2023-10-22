@@ -1,49 +1,53 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                <table class="table table-hover">
-        <thead class="table-primary">
-            <tr>
-                <th>#</th>
-                <th>Food</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>+
-            @if($product->count() > 0)
-                @foreach($product as $rs)
-                    <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $rs->food }}</td>
-                        <td class="align-middle">{{ $rs->price }}</td>
-                        <td class="align-middle">{{ $rs->category }}</td>
-                        <td class="align-middle">{{ $rs->description }}</td>  
-                        <td class="align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('addtocart', $rs->id) }}" type="button" class="btn btn-danger">Add</a>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td class="text-center" colspan="5">Product not found</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
-                </div>
-            </div>
+    <div class="hero min-h-screen" style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Best food to fulfill your belly.</h1>
+            <a href="#foodcart" class=" btn rounded-full bg-color1 hover:bg-red-400 text-white"> Get Started</a>
+          </div>
         </div>
-    </div>
+      </div>  
+        @if($product->count() > 0)
+        <div class="btn-group">
+          <button class="btn {{ $btnActive === 'Makanan' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Makanan') }}">Makanan</a></button>
+          <button class="btn {{ $btnActive === 'Minuman' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Minuman') }}">Minuman</a></button>
+          <button class="btn {{ $btnActive === 'Snack' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Snack') }}">Snack</a></button>
+        </div>
+        
+        <x-foodlist>
+        @foreach($product as $rs)
+                <div id="foodcart" class="card w-96 bg-color4 border border-color2 transition transform duration-700 hover:shadow-xl hover:scale-105 rounded-lg relative">
+                    <figure class="px-10 pt-12  mx-auto">
+                      <img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}"  class="object-fill w-96 h-56 rounded-xl" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title text-2xl">
+                            {{ $rs->food }}
+                            <div class="badge badge-sm bg-color3">{{ $rs->category }}</div>
+                        </h2>
+                      <p>{{ $rs->description }}</p>
+                      <h2 class="text-gray-900 text-xl font-bold">Rp{{ $rs->price }}</h2>
+                      <div class="card-action flex px-auto">
+                        <button><a href="{{ route('products.show', $rs->id) }}" type="button" class=" flex btn rounded-full bg-color2 hover:text-black">See details</a></button>
+                        <button><a href="{{ route('addtocart', $rs->id) }}" type="button" class="btn rounded-full bg-color1 hover:bg-red-400 text-white">Add to cart</a></button>
+                      </div>
+                    </div>
+                </div>
+            @endforeach
+        </x-foodlist>
+        @else 
+                <td class="text-center" colspan="5">Product not found</td>
+        @endif
+
+        
+@if(isset($scroll))
+<script>
+    
+    var elementToScrollTo = document.getElementById("{{ $scroll }}");
+    if (elementToScrollTo) {
+        elementToScrollTo.scrollIntoView({ behavior: "instant"});
+    }
+</script>
+@endif
 </x-app-layout>
