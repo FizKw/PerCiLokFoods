@@ -39,7 +39,7 @@ class CartController extends Controller
 
         $user = User::find(Auth()->user()->id);
         $user->foods()->attach($foods);
-        return redirect()->route('home');
+        return redirect()->route('home',['#foodcart']);
 
     }
 
@@ -65,5 +65,4 @@ class CartController extends Controller
 
     }
 
-    // public function delete()
 }

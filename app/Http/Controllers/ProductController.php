@@ -73,7 +73,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Foods::findOrFail($id);
-  
+        $product->users()->detach();
         $product->delete();
   
         return redirect()->route('home')->with('success', 'product deleted successfully');

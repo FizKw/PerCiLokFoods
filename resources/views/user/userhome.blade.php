@@ -9,6 +9,11 @@
         </div>
       </div>  
         @if($product->count() > 0)
+        <div class="btn-group">
+          <button class="btn {{ $btnActive === 'Makanan' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Makanan') }}">Makanan</a></button>
+          <button class="btn {{ $btnActive === 'Minuman' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Minuman') }}">Minuman</a></button>
+          <button class="btn {{ $btnActive === 'Snack' ? 'btn-active' : '' }}"><a href="{{ route('category', 'Snack') }}">Snack</a></button>
+        </div>
         
         <x-foodlist>
         @foreach($product as $rs)
@@ -36,5 +41,13 @@
         @endif
 
         
-
+@if(isset($scroll))
+<script>
+    
+    var elementToScrollTo = document.getElementById("{{ $scroll }}");
+    if (elementToScrollTo) {
+        elementToScrollTo.scrollIntoView({ behavior: "instant"});
+    }
+</script>
+@endif
 </x-app-layout>
