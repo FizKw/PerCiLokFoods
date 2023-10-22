@@ -11,16 +11,14 @@
                 <input type="text" name="price" class="form-control" placeholder="Price" required>
             </div>
 
-            <div>
                 <!-- <input type="text" name="category" class="form-control" placeholder="Category" required> -->
-                <div class="input-group">
-                    <select class="select select-bordered" name="category" required>
-                        <option disabled selected hidden value="">Category</option>
-                        <option value="Makanan">Makanan</option>
-                        <option value="Minuman">Minuman</option>
-                        <option value="Snack">Snack</option>
-                    </select>
-                </div>
+            <div class="input-group">
+                <select class="select select-bordered" name="category" required>
+                    <option disabled selected hidden value="">Category</option>
+                    <option value="Makanan">Makanan</option>
+                    <option value="Minuman">Minuman</option>
+                    <option value="Snack">Snack</option>
+                </select>
             </div>
             <div>
                 <textarea class="form-control" name="description" placeholder="Descriptoin" required></textarea>
