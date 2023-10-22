@@ -58,7 +58,7 @@
                 </tr>
             @else
                 <tr>
-                    <td class="text-center" colspan="5">Product not found</td>
+                    <td class="text-center" colspan="5">Cart Is Empty</td>
                 </tr>
             @endif
         </tbody>

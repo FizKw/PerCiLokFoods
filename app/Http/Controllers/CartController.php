@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+
+
     public function show(){
 
         $cart = User::with('foods')->where('id',Auth()->user()->id)->first();
         $listFood = $cart->foods->unique();
         // dd($listFood->toArray());
+
         $counts = DB::table('user_foods')->selectRaw('foods_id, count(*) as count')->where('user_id', Auth()->user()->id)->groupBy('foods_id')->get();
+        
+
         // dd($counts);
         $totalPrice = 0;
         foreach ($listFood as $list) {
