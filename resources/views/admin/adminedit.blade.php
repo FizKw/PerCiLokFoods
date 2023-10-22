@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center">
         <div> </div>
         <h1 class="items-center uppercase text-xl ml-6 font-bold">List Product</h1>
-        <a href="{{ route('products.create') }}" class=" btn rounded-full bg-color1 hover:bg-red-400 text-white">Add list</a>
+        <a href="{{ route('products.create') }}" class="mr-20 btn rounded-full bg-color1 hover:bg-red-400 text-white">Add list</a>
 
     </div>
     @if(Session::has('success'))
