@@ -23,10 +23,6 @@
                 <label class="form-label">Price</label>
                 <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $product->price }}" >
             </div>
-            <!-- <div class="col mb-3">
-                <label class="form-label">Category</label>
-                <input type="text" name="category" class="form-control" placeholder="Category" value="{{ $product->category }}" >
-            </div> -->
             <div class="input-group">
                 <select class="select select-bordered" name="category" required>
                     <option disabled selected hidden value="">Category</option>
