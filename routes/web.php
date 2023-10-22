@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('home/addtocart/{id}',[CartController::class,'add'])->name('addtocart');
     Route::get('home/increase/{id}',[CartController::class,'increase'])->name('increase');
     Route::get('home/decrease/{id}',[CartController::class,'decrease'])->name('decrease');
-    Route::get('home/{category}', [HomeController::class, 'category'])->name('category');
+    Route::get('product/{category}', [HomeController::class, 'category'])->name('category');
 
     
     

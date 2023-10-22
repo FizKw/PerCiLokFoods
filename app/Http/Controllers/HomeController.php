@@ -29,8 +29,9 @@ class HomeController extends Controller
             }
         }
         else {
+            $btnActive = "none";
             $product = Foods::orderBy('created_at', 'DESC')->get();
-            return view('user.userhome',compact('product'));
+            return view('user.userhome',compact('product', 'btnActive'));
         }
     }
 
