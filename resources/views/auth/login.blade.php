@@ -23,6 +23,16 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Captcha')" />
+            {!! captcha_img() !!}
+            <x-text-input id="captcha" class="block mt-1 w-full" type="text" name="captcha" :value="old('captcha')" required autocomplete="captcha" />
+            @if($errors->has('captcha'))
+                <span class="text-danger">
+                    Captcha Is Incorrect
+                </span>
+            @endif
+        </div>
 
         <!-- Remember Me blm bisa wir -->
         <!-- <div class="block mt-4">

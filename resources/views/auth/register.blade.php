@@ -49,16 +49,7 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Captcha')" />
-            {!! captcha_img() !!}
-            <x-text-input id="captcha" class="block mt-1 w-full" type="captcha" name="captcha" :value="old('captcha')" required autocomplete="captcha" />
-            @if($errors->has('captcha'))
-                <span class="text-danger">
-                    Captcha Is Incorrect
-                </span>
-            @endif
-        </div>
+        
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-black hover:text-white  rounded-md " href="{{ route('login') }}">
