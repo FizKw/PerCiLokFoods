@@ -47,7 +47,7 @@ class CartController extends Controller
 
         $user = User::find(Auth()->user()->id);
         $user->foods()->attach($foods);
-        return redirect()->route('cartlist');
+        return redirect()->back();
 
     }
     public function decrease(int $foods){
@@ -61,7 +61,7 @@ class CartController extends Controller
         DB::table('user_foods')->where('id', $tableData->id)->delete();
 
         // $user->foods()->detach($foods);
-        return redirect()->route('cartlist');
+        return redirect()->back();
 
     }
 
