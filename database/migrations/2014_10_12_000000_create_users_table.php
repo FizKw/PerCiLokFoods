@@ -16,8 +16,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('f_name');
+            $table->string('l_name');
             $table->string('email')->unique();
+            $table->date('date_of_birth');
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->string('usertype')->default('user');
@@ -27,7 +29,9 @@ return new class extends Migration
 
         DB::table('users')->insert(
             array(
-                'name' => 'admin',
+                'f_name' => 'admin',
+                'l_name' => 'only',
+                'date_of_birth' => '2000-01-01',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin123'),
                 'usertype' => 'admin'

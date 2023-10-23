@@ -47,7 +47,7 @@
                 @endif
 
                 {{-- Username --}}
-                <label tabindex="0" class="group-hover:cursor-pointer pt-3 pl-4 text-black hidden md:block ">{{ Auth::user()->name }}</label>
+                <label tabindex="0" class="group-hover:cursor-pointer pt-3 pl-4 text-black hidden md:block ">{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</label>
             </div>
 
             {{-- Dropdown Avatar --}}
