@@ -9,7 +9,7 @@
             <span class="text-slate-950">Foods</span>.</p>
         </a>
     </div>
-    <div class="flex-none">
+    <div class="">
 
             {{-- Cartlist --}}
             @auth
