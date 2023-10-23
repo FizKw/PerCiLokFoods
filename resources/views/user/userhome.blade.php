@@ -17,7 +17,7 @@
         
         <x-foodlist>
             @foreach($product as $rs)
-            <div id="foodcart" class="card card-compact w-96  mb-6 bg-color4 border border-color2 transition transform duration-700 shadow-md hover:shadow-xl hover:scale-105 rounded-lg relative">
+            <div id="foodcart" class="card card-compact mx-auto w-96 lg:w-80 xl:w-96 mb-6 bg-color4 border border-color2 transition transform duration-700 shadow-md hover:shadow-xl hover:scale-105 rounded-lg relative">
                 <a href="{{ route('products.show', $rs->id) }}">
                     <figure class="mx-auto"><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}" class="w-96 h-56 rounded-xl object-cover object-center" /></figure>
                     <div class="card-body text-center items-center">
