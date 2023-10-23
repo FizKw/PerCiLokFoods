@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
- 
 class ProductController extends Controller
 {
     /**
@@ -40,7 +40,11 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Foods::findOrFail($id);
-        $counts = DB::table('user_foods')->where('user_id', Auth()->user()->id)->where('foods_id', $id)->get()->count();
+        if (Auth::check()) {
+            $counts = DB::table('user_foods')->where('user_id', Auth()->user()->id)->where('foods_id', $id)->get()->count();
+        }else{
+            $counts = 0;
+        }
         // dd($counts);
 
   

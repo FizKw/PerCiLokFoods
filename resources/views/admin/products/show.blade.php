@@ -14,6 +14,7 @@
                         </div>
 
                         <div class="md:flex">
+                        @auth
                         @if (Auth()->user()->usertype === 'user')
                             {{-- quantity --}}
                             @if($counts > 0)
@@ -23,12 +24,18 @@
                                     <button><a href="{{ route('increase', $product->id) }}" type="button" class="text-2xl bg-color1 w-10 h-10 rounded-full text-white hover:scale-105 transform transition duration-500 cursor-pointer p-2"><i data-feather="plus"></i> </a></button>
                                 </div>
                             {{--  add button   --}}
+                        
                             @else
                             <div class="mt-2 mr-4 flex items-center justify-center md:justify-start lg:justify-start">
                                 <button><a href="{{ route('insert', $product->id) }}" class="flex items-center space-x-3 bg-color1 px-4 py-3 text-white rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"><i data-feather="shopping-cart"></i><span class="text-lg">Add to cart</span></a></button>
                             </div>
                             @endif
                         @endif
+                        @else
+                            <div class="mt-2 mr-4 flex items-center justify-center md:justify-start lg:justify-start">
+                                <button><a href="{{ route('insert', $product->id) }}" class="flex items-center space-x-3 bg-color1 px-4 py-3 text-white rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"><i data-feather="shopping-cart"></i><span class="text-lg">Add to cart</span></a></button>
+                            </div>
+                        @endauth
 
                         {{-- home button --}}
                         <div class="mt-2 flex items-center justify-center md:justify-start lg:justify-start">
