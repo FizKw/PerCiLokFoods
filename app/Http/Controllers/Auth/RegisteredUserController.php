@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
             'date_of_birth' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'captcha' => 'required|captcha',
         ]);
 
         $user = User::create([
