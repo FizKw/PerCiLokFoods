@@ -27,7 +27,7 @@
                                         @foreach ($counts as $count)
                                             @if ($count->foods_id == $rs->id)
                                             <td class="justify-center place-items-center py-12 flex ">
-                                                <a href="{{ route('increase', $rs->id) }}" type="button" class="text-black hover:text-color2 cursor-pointer"><i class="" data-feather="minus-circle"></i> </a>
+                                                <a href="{{ route('decrease', $rs->id) }}" type="button" class="text-black hover:text-color2 cursor-pointer"><i class="" data-feather="minus-circle"></i> </a>
                                                 <p class="mx-4 ">{{ $count->count }}</p>
                                                 <a href="{{ route('increase', $rs->id) }}" type="button" class="text-black hover:text-color2 cursor-pointer"><i class="" data-feather="plus-circle"></i> </a>
                                             </td>
@@ -56,8 +56,9 @@
             </div>
         </div>
     </div>
-
+@if(DB::table('user_foods')->where('user_id', Auth()->user()->id)->get()->count() > 0)
 <button><a href="#modal_box" class="btn bg-color1">Checkout pesanan</a></button>
+@endif
 <!-- Put this part before </body> tag -->
 <div class="modal" id="modal_box">
   <div class="modal-box">
