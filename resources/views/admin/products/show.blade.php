@@ -13,20 +13,26 @@
                             <h1 class="text-3xl font-bold text-black select-none">Rp {{ $product->price }}</h1>
                         </div>
 
+                        <div class="flex">
                         @if (Auth()->user()->usertype === 'user')
                             {{-- quantity --}}
-                                <div class="flex items-center justify-center md:justify-start lg:justify-start mt-2 py-2 space-x-6 rounded-full">
+                                <div class="flex items-center justify-center md:justify-start lg:justify-start mt-2 mr-4 py-2 space-x-6 rounded-full">
                                     <button><a href="#" type="button" class="text-2xl bg-color1 w-10 h-10 rounded-full text-white hover:scale-105 transform transition duration-500 cursor-pointer p-2"><i data-feather="minus"></i> </a></button>
                                     <span class="text-xl text-gray-700 select-none">1</span>
                                     <button><a href="#" type="button" class="text-2xl bg-color1 w-10 h-10 rounded-full text-white hover:scale-105 transform transition duration-500 cursor-pointer p-2"><i data-feather="plus"></i> </a></button>
                                 </div>
 
                             {{--  add button   --}}
-                            <div class="mt-5  flex items-center justify-center md:justify-start lg:justify-start">
+                            <div class="mt-2 mr-4 flex items-center justify-center md:justify-start lg:justify-start">
                                 <button><a href="#" class="flex items-center space-x-3 bg-color1 px-4 py-3 text-white rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"><i data-feather="shopping-cart"></i><span class="text-xl">Add to cart</span></a></button>
                             </div>
                         @endif
 
+                        {{-- home button --}}
+                        <div class="mt-2 flex items-center justify-center md:justify-start lg:justify-start">
+                            <button><a href="{{ route('home') }}" class="flex items-center space-x-3 bg-color4 px-4 py-3 text-black rounded-full  transform transition duration-700 hover:scale-105"><i data-feather="home"></i><span class="text-xl">Go to Home</span></a></button>
+                        </div>
+                    </div>
                         
 
                     </div>
