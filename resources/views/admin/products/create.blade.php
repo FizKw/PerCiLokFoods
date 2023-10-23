@@ -7,16 +7,16 @@
                     @csrf
                     <x-input-label class="form-label">Image</x-input-label>
                     <div class="mt-4">
-                        <x-text-input type="file" name="food_image" placeholder="Food Image" />
-                        <x-primary-button>Add Image</x-primary-button>
+                        <x-text-input type="file" name="food_image" placeholder="Food Image" required/>
+                        <!-- <x-primary-button>Add Image</x-primary-button> -->
                     </div>
                     <div class="mb-3">
                         <x-input-label class="form-label">Food</x-input-label>
-                        <x-text-input type="text" name="food" class="mt-1 block w-full" placeholder="Food"/>
+                        <x-text-input type="text" name="food" class="mt-1 block w-full" placeholder="Food" required/>
                     </div>
                     <div class="mb-3">
                         <x-input-label class="form-label">Price</x-input-label>
-                        <x-text-input type="text" name="price" class="mt-1 block w-full" placeholder="Price"/>
+                        <x-text-input type="text" name="price" class="mt-1 block w-full" placeholder="Price" required/>
                     </div>
                     <div class="input-group">
                         <select class="select select-bordered" name="category" required>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <x-input-label class="mt-1 ">Description</x-input-label>
-                        <x-text-input class="mt-1 block w-full" name="description" placeholder="Food Description"/>
+                        <x-text-input class="mt-1 block w-full" name="description" placeholder="Food Description" required/>
                     </div>
                     <div class="">
                         <x-primary-button class="btn btn-warning">Create</x-primary-button>
