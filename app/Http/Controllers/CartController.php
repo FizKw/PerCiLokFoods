@@ -65,4 +65,11 @@ class CartController extends Controller
 
     }
 
+    public function checkout(){
+        $user = User::find(Auth()->user()->id);
+        $user->foods()->detach();
+
+        return redirect()->route('home');
+    }
+
 }

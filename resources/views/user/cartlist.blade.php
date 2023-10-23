@@ -56,19 +56,7 @@
             </div>
         </div>
     </div>
-    <!-- The button to open modal -->
-{{-- <a href="#modal_box" class="btn">open modal</a>
-<!-- Put this part before </body> tag -->
-<div class="modal" id="modal_box">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Terima kasih</h3>
-    <p class="py-4">Pesanan mu sudah diproses</p>
-    <div class="modal-action">
-     <a href="{{ route('home') }}" class="modal-backdrop" for="modal_box" ></a>
-    </div>
-  </div>
-</div> --}}
-<!-- The button to open modal -->
+
 <button><a href="#modal_box" class="btn bg-color1">Checkout pesanan</a></button>
 <!-- Put this part before </body> tag -->
 <div class="modal" id="modal_box">
@@ -76,7 +64,7 @@
     <h3 class="font-bold text-lg">Terima kasih</h3>
     <p class="py-4">Pesananmu segera di proses</p>
     <div class="modal-action">
-     <a href="{{ route('home') }}" class="btn ">Close</a>
+     <a href="{{ route('checkout') }}" class="btn ">Close</a>
     </div>
   </div>
 </div>
