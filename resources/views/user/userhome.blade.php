@@ -19,13 +19,16 @@
             @foreach($product as $rs)
             <div id="foodcart" class="card card-compact w-96  mb-6 bg-color4 border border-color2 transition transform duration-700 shadow-md hover:shadow-xl hover:scale-105 rounded-lg relative">
                 <a href="{{ route('products.show', $rs->id) }}">
-                <figure class="mx-auto"><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}" class="w-96 h-56 rounded-xl object-cover object-center" /></figure>
-                <div class="card-body items-center text-center">
-                    <h2 class="card-title text-2xl capitalize">{{ $rs->food }}
-                        <span class="badge badge-sm bg-color3">{{ $rs->category }}</span>
-                    </h2>
-                    <p class="text-gray-900 text-xl font-bold">Rp{{ $rs->price }}</p>
-                </div>
+                    <figure class="mx-auto"><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food }}" class="w-96 h-56 rounded-xl object-cover object-center" /></figure>
+                    <div class="card-body text-center items-center">
+                        <h2 class="card-title  text-2xl capitalize">{{ $rs->food }}
+                            <span class="badge badge-sm bg-color3">{{ $rs->category }}</span>
+                        </h2>
+                        <p class="text-gray-900 items-center text-xl font-bold">Rp{{ $rs->price }}</p>
+                        <div class="card-actions">
+                            <button class="justify-end flex-end"><a href="{{ route('addtocart', $rs->id) }}" type="button" class="btn rounded-full capitalize text-lg bg-color1 hover:bg-red-400 text-white">Add</a></button>
+                        </div>
+                    </div>
                 </a>
             </div>
             @endforeach

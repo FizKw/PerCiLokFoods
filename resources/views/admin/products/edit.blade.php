@@ -7,8 +7,8 @@
                 <form action="{{ route('food.image', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-                        <figure class=" object-fill object-center flex-shrink-0 flex-grow-0 mx-12 w-72 h-56 bg-slate-800 rounded-lg ">
-                            <img class="  flex-shrink-0 flex-grow-0 h-full max-w-full rounded-lg mb-4 " src="{{ asset('storage/' . $product->food_image) }}" alt="">   
+                        <figure class=" flex-shrink-0 flex-grow-0 mx-8 w-72 h-56 justify-center rounded-lg ">
+                            <img class="object-fill object-center  flex-shrink-0 flex-grow-0 h-full max-w-full mx-auto rounded-lg mb-4 justtify-center" src="{{ asset('storage/' . $product->food_image) }}" alt="">   
                         </figure>
                         <div class="mt-4">
                             <x-text-input type="file" name="food_image" placeholder="Food Image" />
