@@ -13,7 +13,7 @@
                             <h1 class="text-3xl font-bold text-black select-none">Rp {{ $product->price }}</h1>
                         </div>
 
-                        <div class="flex">
+                        <div class="md:flex">
                         @if (Auth()->user()->usertype === 'user')
                             {{-- quantity --}}
                             @if($counts > 0)
@@ -32,7 +32,7 @@
 
                         {{-- home button --}}
                         <div class="mt-2 flex items-center justify-center md:justify-start lg:justify-start">
-                            <button><a href="{{ route('home') }}" class="flex items-center space-x-3 bg-color4 px-4 py-3 text-black rounded-full  transform transition duration-700 hover:scale-105"><i data-feather="home"></i><span class="text-lg">Go to Home</span></a></button>
+                            <button><a href="{{ route('home') }}" class="flex items-center space-x-3 bg-color4 px-4 py-3 text-black rounded-full  transform transition duration-700 hover:scale-105"><i data-feather="home"></i><span class="text-lg md:text-base">Go to Home</span></a></button>
                         </div>
                     </div>
                         

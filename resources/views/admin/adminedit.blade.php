@@ -13,7 +13,7 @@
     </div>
 
     <div class="overflow-x-auto  container">
-        <table class="table-fixed w-full h-80 mx-auto table-hover relative border">
+        <table class="table-fixed w-full h-full mx-auto table-hover relative border">
                 <thead class="text-center sticky top-0 font-bold bg-color3 text-lg text-black border-y">
                     <tr>
                         <th class=" w-20"></th>
@@ -28,7 +28,7 @@
                     @if($product->count() > 0)
                         @foreach($product as $rs)
                             <tr class="even:bg-color3">
-                                <td><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food_image }}" class=" object-center object-cover  h-16 w-20 rounded"> </td>
+                                <td><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food_image }}" class=" object-center object-cover mx-auto h-16 w-20 rounded"> </td>
                                 <td class="align-middle border-y text-center">{{ $rs->food }}</td>
                                 <td class="align-middle border-y text-center">{{ $rs->price }}</td>
                                 <td class="align-middle border-y text-center">{{ $rs->category }}</td>
