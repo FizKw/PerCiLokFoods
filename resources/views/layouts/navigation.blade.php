@@ -1,4 +1,4 @@
-<div class="navbar bg-color4 fixed z-50 shadow-lg">
+<div class="navbar bg-color4 fixed z-50 shadow-lg justify-between">
     <div  class="flex-1 max-w-7xl px-1 sm:px-6 lg:px-8">
         @auth
         <a href="{{ route('home') }}"  class=" font-bold px-2 text-xl">
@@ -9,7 +9,7 @@
             <span class="text-slate-950">Foods</span>.</p>
         </a>
     </div>
-    <div class="flex-none">
+    <div class="mx-4">
 
             {{-- Cartlist --}}
             @auth
@@ -47,7 +47,7 @@
                 @endif
 
                 {{-- Username --}}
-                <label tabindex="0" class="group-hover:cursor-pointer pt-3 pl-4 text-black hidden md:block ">{{ Auth::user()->name }}</label>
+                <label tabindex="0" class="group-hover:cursor-pointer pt-3 pl-4 text-black hidden md:block ">{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</label>
             </div>
 
             {{-- Dropdown Avatar --}}

@@ -13,10 +13,10 @@
     </div>
 
     <div class="overflow-x-auto h-96">
-        <table class="table table-hover">
-                <thead class="text-center font-bold text-lg text-black">
+        <table class="table table-hover relative">
+                <thead class="text-center sticky top-0 font-bold bg-white text-lg text-black">
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th>Title</th>
                         <th>Price</th>
                         <th>Product Code</th>
@@ -28,7 +28,7 @@
                     @if($product->count() > 0)
                         @foreach($product as $rs)
                             <tr>
-                                <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                                <td><img src="{{ asset('storage/' . $rs->food_image) }}" alt="{{ $rs->food_image }}" class=" object-center object-cover  h-16 w-20 rounded"> </td>
                                 <td class="align-middle text-center">{{ $rs->food }}</td>
                                 <td class="align-middle text-center">{{ $rs->price }}</td>
                                 <td class="align-middle text-center">{{ $rs->category }}</td>

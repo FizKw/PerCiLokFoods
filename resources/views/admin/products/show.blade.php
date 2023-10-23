@@ -1,45 +1,50 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Product Detail
-        </h2>
-    </x-slot>
-    <hr />
-    <div class="shrink-0 flex items-center">
-        <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . $product->food_image) }}" alt="">   
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <label class="form-label">Title</label>
-            <input type="text" name="Foods" class="form-control" placeholder="Title" value="{{ $product->food }}" readonly>
-        </div>
-        <div class="col mb-3">
-            <label class="form-label">Price</label>
-            <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $product->price }}" readonly>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <label class="form-label">Category</label>
-            <input type="text" name="Category" class="form-control" placeholder="Product Code" value="{{ $product->category }}" readonly>
-        </div>
-        <div class="col mb-3">
-            <label class="form-label">Description</label>
-            <textarea class="form-control" name="description" placeholder="Descriptoin" readonly>{{ $product->description }}</textarea>
-        </div>
-    </div>
-    @auth
-    @if (Auth()->user()->usertype === 'admin')
-    <div class="row">
-        <div class="col mb-3">
-            <label class="form-label">Created At</label>
-            <input type="text" name="created_at" class="form-control" placeholder="Created At" value="{{ $product->created_at }}" readonly>
-        </div>
-        <div class="col mb-3">
-            <label class="form-label">Updated At</label>
-            <input type="text" name="updated_at" class="form-control" placeholder="Updated At" value="{{ $product->updated_at }}" readonly>
-        </div>
-    </div>
-    @endif
-    @endauth
+    <section class="max-w-screen-xl mx-auto px-6 my-1 ">
+        <div class="flex flex-col mx-auto justify-center items-center h-screen">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+
+                    {{-- left side --}}
+                    <div class="mx-auto lg:mx-2 order-2 md:order-1 lg:order-1 flex flex-col justify-center">
+                        <h1 class="text-center md:text-left lg:text-left text-3xl lg:text-4xl capitalize font-semibold pb-4 text-gray-700 select-none">{{ $product->food }}</h1>
+                        <p class="text-center md:text-left lg:text-left text-sm text-gray-500 leading-relaxed select-none">{{ $product->description }}</p>
+
+                        {{--  price and quantity  --}}
+                        <div class="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
+                            <h1 class="text-3xl font-bold text-black select-none">Rp {{ $product->price }}</h1>
+                        </div>
+
+                        <div class="flex">
+                        @if (Auth()->user()->usertype === 'user')
+                            {{-- quantity --}}
+                            @if($counts > 0)
+                                <div class="flex items-center justify-center md:justify-start lg:justify-start mt-2 mr-4 py-2 space-x-6 rounded-full">
+                                    <button><a href="{{ route('decrease', $product->id) }}" type="button" class="text-2xl bg-color1 w-10 h-10 rounded-full text-white hover:scale-105 transform transition duration-500 cursor-pointer p-2"><i data-feather="minus"></i> </a></button>
+                                    <span class="text-xl text-gray-700 select-none">{{ $counts }}</span>
+                                    <button><a href="{{ route('increase', $product->id) }}" type="button" class="text-2xl bg-color1 w-10 h-10 rounded-full text-white hover:scale-105 transform transition duration-500 cursor-pointer p-2"><i data-feather="plus"></i> </a></button>
+                                </div>
+                            {{--  add button   --}}
+                            @else
+                            <div class="mt-2 mr-4 flex items-center justify-center md:justify-start lg:justify-start">
+                                <button><a href="{{ route('insert', $product->id) }}" class="flex items-center space-x-3 bg-color1 px-4 py-3 text-white rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"><i data-feather="shopping-cart"></i><span class="text-xl">Add to cart</span></a></button>
+                            </div>
+                            @endif
+                        @endif
+
+                        {{-- home button --}}
+                        <div class="mt-2 flex items-center justify-center md:justify-start lg:justify-start">
+                            <button><a href="{{ route('home') }}" class="flex items-center space-x-3 bg-color4 px-4 py-3 text-black rounded-full  transform transition duration-700 hover:scale-105"><i data-feather="home"></i><span class="text-xl">Go to Home</span></a></button>
+                        </div>
+                    </div>
+                        
+
+                    </div>
+                    {{-- right side --}}
+                    <div class="order-1 md:order-2 lg:order-2">
+                        <img src="{{ asset('storage/' . $product->food_image) }}" class="w-3/4 md:w-3/4 rounded lg:w-full mx-auto" alt="{{ $product->food }}" />
+                    </div>
+                </div>
+            </div>
+        
+
+    </section>
 </x-app-layout>

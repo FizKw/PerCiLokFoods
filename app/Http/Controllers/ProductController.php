@@ -5,7 +5,10 @@ use App\Http\Requests\FoodImageRequest;
 use App\Models\Foods;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+
  
 class ProductController extends Controller
 {
@@ -37,10 +40,21 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Foods::findOrFail($id);
+        $counts = DB::table('user_foods')->where('user_id', Auth()->user()->id)->where('foods_id', $id)->get()->count();
+        // dd($counts);
+
   
-        return view('admin.products.show', compact('product'));
+        return view('admin.products.show', compact('product','counts'));
     }
-  
+    
+    public function insert(int $foods){
+
+        $user = User::find(Auth()->user()->id);
+        $user->foods()->attach($foods);
+        return redirect()->back();
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
