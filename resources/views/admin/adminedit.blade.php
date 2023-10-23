@@ -12,7 +12,7 @@
 
     </div>
 
-    <div class="overflow-x-auto  container">
+    <div class="overflow-auto  container">
         <table class="table-fixed w-full h-full mx-auto table-hover relative border">
                 <thead class="text-center sticky top-0 font-bold bg-color3 text-lg text-black border-y">
                     <tr>
@@ -32,19 +32,19 @@
                                 <td class="align-middle border-y text-center">{{ $rs->food }}</td>
                                 <td class="align-middle border-y text-center">{{ $rs->price }}</td>
                                 <td class="align-middle border-y text-center">{{ $rs->category }}</td>
-                                <td class="align-middle border-y text-center table-fixed">{{ $rs->description }}</td>  
+                                <td class="align-middle border-y text-center overflow-hidden truncate">{{ $rs->description }}</td>  
                                 <td class="align-middle border-y text-center">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning hover:bg-yellow-200 bg-yellow-500">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <div class="btn-group " role="group" aria-label="Basic example">
+                                        <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-xs sm:btn-sm md:btn-md btn-error hover:bg-yellow-200 bg-yellow-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                             </svg>
                                         </a>
                                         <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button"  onsubmit="return confirm('Delete?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-error hover:bg-red-400 bg-red-600">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                            <button class="btn btn-xs sm:btn-sm md:btn-md btn-error hover:bg-red-400 bg-red-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                             </button>
                                         </form>
                                     </div>
