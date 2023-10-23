@@ -37,7 +37,7 @@
                         </div>
                             <div class="mb-3 relative w-full min-w-[200px]">
                                 <x-input-label class="mt-1 ">Description</x-input-label>
-                                <textarea class="px-3 py-2.5 mt-1 block resize-none peer min-h-[100px] w-full h-full border  ring-1 ring-orange-950 bg-color3 focus:border-orange-950  focus:ring-orange-950 text-black rounded-sm mr-4" name="description" placeholder="Food Description" value="{{ $product->description }}"></textarea>
+                                <textarea class="px-3 py-2.5 mt-1 block resize-none peer min-h-[100px] w-full h-full border  ring-1 ring-orange-950 bg-color3 focus:border-orange-950  focus:ring-orange-950 text-black rounded-sm mr-4" name="description" placeholder="Food Description">{{ old('description', $product->description) }}</textarea>
                             </div>
                         <div class="">
                             <x-primary-button class="btn btn-warning">Update</x-primary-button>
