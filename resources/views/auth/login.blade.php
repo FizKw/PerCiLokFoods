@@ -8,7 +8,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -23,14 +23,24 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+        <div class="mt-4">
+            <x-input-label class="mt-1" for="password_confirmation" :value="__('Captcha')" />
+            {!! captcha_img() !!}
+            <x-text-input id="captcha" class="block mt-2 w-full" type="text" name="captcha" :value="old('captcha')" required autocomplete="captcha" />
+            @if($errors->has('captcha'))
+                <span class="text-danger">
+                    Captcha Is Incorrect
+                </span>
+            @endif
+        </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
+        <!-- Remember Me blm bisa wir -->
+        <!-- <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded bg-color3 border-gray-300  text-color2 shadow-sm focus:text-color2 " name="remember">
                 <span class="ml-2 text-sm text-black">{{ __('Remember me') }}</span>
             </label>
-        </div>
+        </div> -->
 
 
         
