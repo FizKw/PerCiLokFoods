@@ -38,11 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::get('home/addtocart/{id}',[CartController::class,'add'])->name('addtocart');
     Route::get('home/increase/{id}',[CartController::class,'increase'])->name('increase');
     Route::get('home/decrease/{id}',[CartController::class,'decrease'])->name('decrease');
+    Route::get('product/{category}', [HomeController::class, 'category'])->name('category');
+    Route::get('show/insert/{id}', [ProductController::class, 'insert'])->name('insert');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
     
     
 });
 Route::middleware(['auth', 'admin'])->prefix('home')->group(function () {
-        
         Route::get('create', [ProductController::class,'create'])->name('products.create');
         Route::post('store', [ProductController::class,'store'])->name('products.store');
         Route::get('edit/{id}', [ProductController::class,'edit'])->name('products.edit');

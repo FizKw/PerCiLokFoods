@@ -17,7 +17,8 @@ class HomeController extends Controller
 
             if($usertype=='user'){
                 $product = Foods::orderBy('created_at', 'DESC')->get();
-                return view('user.userhome',compact('product'));
+                $btnActive = "none";
+                return view('user.userhome',compact('product', 'btnActive'));
             }
             else if($usertype=='admin'){
                 $product = Foods::orderBy('created_at', 'DESC')->get();
@@ -28,9 +29,18 @@ class HomeController extends Controller
             }
         }
         else {
+            $btnActive = "none";
             $product = Foods::orderBy('created_at', 'DESC')->get();
-            return view('user.userhome',compact('product'));
+            return view('user.userhome',compact('product', 'btnActive'));
         }
+    }
+
+    public function category(string $category){
+        
+        $product = Foods::where('category', $category)->orderBy('created_at', 'DESC')->get();
+        $btnActive = $category;
+        return view('user.userhome',compact('product','btnActive'))->with('scroll', 'foodcart');
+
     }
 
     

@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+
+
     public function show(){
 
         $cart = User::with('foods')->where('id',Auth()->user()->id)->first();
         $listFood = $cart->foods->unique();
         // dd($listFood->toArray());
+
         $counts = DB::table('user_foods')->selectRaw('foods_id, count(*) as count')->where('user_id', Auth()->user()->id)->groupBy('foods_id')->get();
+        
+
         // dd($counts);
         $totalPrice = 0;
         foreach ($listFood as $list) {
@@ -34,7 +39,7 @@ class CartController extends Controller
 
         $user = User::find(Auth()->user()->id);
         $user->foods()->attach($foods);
-        return redirect()->route('home');
+        return redirect()->route('home',['#foodcart'])->with('success', 'Product added successfully');
 
     }
 
@@ -42,7 +47,7 @@ class CartController extends Controller
 
         $user = User::find(Auth()->user()->id);
         $user->foods()->attach($foods);
-        return redirect()->route('cartlist');
+        return redirect()->back();
 
     }
     public function decrease(int $foods){
@@ -56,9 +61,15 @@ class CartController extends Controller
         DB::table('user_foods')->where('id', $tableData->id)->delete();
 
         // $user->foods()->detach($foods);
-        return redirect()->route('cartlist');
+        return redirect()->back();
 
     }
 
-    // public function delete()
+    public function checkout(){
+        $user = User::find(Auth()->user()->id);
+        $user->foods()->detach();
+
+        return redirect()->route('home');
+    }
+
 }

@@ -5,8 +5,11 @@ use App\Http\Requests\FoodImageRequest;
 use App\Models\Foods;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
- 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class ProductController extends Controller
 {
     /**
@@ -37,10 +40,25 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Foods::findOrFail($id);
+        if (Auth::check()) {
+            $counts = DB::table('user_foods')->where('user_id', Auth()->user()->id)->where('foods_id', $id)->get()->count();
+        }else{
+            $counts = 0;
+        }
+        // dd($counts);
+
   
-        return view('admin.products.show', compact('product'));
+        return view('admin.products.show', compact('product','counts'));
     }
-  
+    
+    public function insert(int $foods){
+
+        $user = User::find(Auth()->user()->id);
+        $user->foods()->attach($foods);
+        return redirect()->back();
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -73,7 +91,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Foods::findOrFail($id);
-  
+        $product->users()->detach();
         $product->delete();
   
         return redirect()->route('home')->with('success', 'product deleted successfully');
