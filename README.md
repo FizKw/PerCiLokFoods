@@ -18,6 +18,8 @@ PerCiLokFoods adalah website yang dapat digunakan untuk melihat menu pada suatu 
   - Cartlist merupakan page yang bisa dibuka untuk melihat pesanan apa saja yang dipilih dan total harganya berapa.
 * Filter Kategori
   - Terdapat button yang dapat di-click untuk mengganti filter kategori yang dapat menampilkan hanya makanan atau minuman ataupun snack.
+* Profile Page
+  - Terdapat profile page untuk setiap akun yang terdaftar di website.
  
 ## Built with 
 
